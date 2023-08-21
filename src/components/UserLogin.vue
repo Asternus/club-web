@@ -30,9 +30,15 @@ export default {
   methods: {
     async login() {
       try {
-        const response = await axios.post('http://localhost:5000/login', {
-          username: this.username,
-          password: this.password,
+        const formData = new FormData();
+        formData.append('username', this.username);
+        formData.append('password', this.password);
+
+        const response = await axios.post('http://localhost:5000/login', formData, {
+          withCredentials: true, // Включить передачу куки и авторизационных данных
+          headers: {
+            'Content-Type': 'application/x-www-form-urlencoded', // Установить заголовок для данных формы
+          },
         });
         // Действия после успешного входа
         console.log('Logged in:', response.data);
