@@ -34,17 +34,30 @@ export default {
         formData.append('username', this.username);
         formData.append('password', this.password);
 
-        const response = await axios.post('http://localhost:5000/login', formData, {
-          withCredentials: true, // Включить передачу куки и авторизационных данных
+        const response = await axios.post('http://localhost:5000/login', formData,  {
+          withCredentials: true,
           headers: {
-            'Content-Type': 'application/x-www-form-urlencoded', // Установить заголовок для данных формы
+            'Content-Type': 'application/x-www-form-urlencoded',
           },
         });
+
+        // Извлечение значения куки
+        const authToken = this.getCookie('SESSION'); // Здесь "SESSION" - имя куки
+
+        if (authToken) {
+          localStorage.setItem('authToken', authToken);
+        }
+
         // Действия после успешного входа
         console.log('Logged in:', response.data);
       } catch (error) {
         console.error('Login error:', error);
       }
+    },
+    getCookie(name) {
+      const value = `; ${document.cookie}`;
+      const parts = value.split(`; ${name}=`);
+      if (parts.length === 2) return parts.pop().split(';').shift();
     },
   },
 };

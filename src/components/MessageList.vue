@@ -50,7 +50,7 @@
 </template>
 
 <script>
-import axios from 'axios';
+import api from '@/services/api';
 export default {
   data() {
     return {
@@ -63,7 +63,7 @@ export default {
   methods: {
     async fetchMessages() {
       try {
-        const response = await axios.get("http://localhost:5000/messages");
+        const response = await api.get("/messages");
         this.messages = response.data;
       } catch (error) {
         console.error("Error fetching messages:", error);
