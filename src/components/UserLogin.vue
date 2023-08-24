@@ -4,11 +4,11 @@
     <form @submit.prevent="login">
       <div>
         <label for="username">Username:</label>
-        <input type="text" id="username" v-model="username" />
+        <input type="text" id="username" v-model="username"/>
       </div>
       <div>
         <label for="password">Password:</label>
-        <input type="password" id="password" v-model="password" />
+        <input type="password" id="password" v-model="password"/>
       </div>
       <div>
         <button type="submit">Login</button>
@@ -34,7 +34,7 @@ export default {
         formData.append('username', this.username);
         formData.append('password', this.password);
 
-        const response = await axios.post('http://localhost:5000/login', formData,  {
+        const response = await axios.post('http://localhost:5000/login', formData, {
           withCredentials: true,
           headers: {
             'Content-Type': 'application/x-www-form-urlencoded',
@@ -46,7 +46,10 @@ export default {
 
         if (authToken) {
           localStorage.setItem('authToken', authToken);
+          sessionStorage.setItem('authToken', authToken)
         }
+
+        window.location.href = '/';
 
         // Действия после успешного входа
         console.log('Logged in:', response.data);

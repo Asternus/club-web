@@ -1,10 +1,9 @@
 import {createRouter, createWebHistory} from 'vue-router';
 import MessageList from '../components/MessageList.vue';
 import HelloWorld from '../components/HelloWorld.vue';
-import UnauthorizedAccess from '@/components/UnauthorizedAccess.vue';
+import RegistrationUser from '@/components/RegistrationUser.vue';
 import UserLogin from '@/components/UserLogin.vue';
-/*import api from '@/services/api';
-import cookie from 'cookie';*/
+import LogOut from '@/components/LogOut.vue';
 
 const routes = [
     {
@@ -13,9 +12,9 @@ const routes = [
         component: HelloWorld,
     },
     {
-        path: '/unauthorized',
+        path: '/registration',
         name: 'UnauthorizedAccess',
-        component: UnauthorizedAccess,
+        component: RegistrationUser,
     },
     {
         path: '/messages',
@@ -26,6 +25,11 @@ const routes = [
         path: '/login',
         name: 'UserLogin',
         component: UserLogin,
+    },
+    {
+        path: '/logout',
+        name: 'LogOut',
+        component: LogOut,
     },
 ];
 
