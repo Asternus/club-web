@@ -24,6 +24,13 @@
         </div>
       </div>
       <div>
+        <label for="password">Подтверждение пароля:</label>
+        <input type="password" id="rePassword" v-model="rePassword" required>
+        <div v-if="registrationError.rePassword" class="error-message">
+          {{ registrationError.rePassword}}
+        </div>
+      </div>
+      <div>
         <button type="submit">Зарегистрироваться</button>
       </div>
     </form>
@@ -39,6 +46,7 @@ export default {
       username: '',
       email: '',
       password: '',
+      rePassword: '',
       registrationError: ''
     };
   },
@@ -49,9 +57,12 @@ export default {
           username: this.username,
           email: this.email,
           password: this.password
+        }, {
+          params: {
+            rePassword: this.rePassword
+          }
         });
-        debugger;
-        // Обработка успешной регистрации
+        window.location.href = '/';
         console.log('Пользователь успешно зарегистрирован:', response.data);
       } catch (error) {
         console.error('Ошибка при регистрации пользователя:', error);
