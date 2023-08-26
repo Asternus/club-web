@@ -4,6 +4,7 @@ import HelloWorld from '../components/HelloWorld.vue';
 import RegistrationUser from '@/components/RegistrationUser.vue';
 import UserLogin from '@/components/UserLogin.vue';
 import LogOut from '@/components/LogOut.vue';
+import AdminPanel from '@/components/AdminPanel.vue';
 
 const routes = [
     {
@@ -30,6 +31,11 @@ const routes = [
         path: '/logout',
         name: 'LogOut',
         component: LogOut,
+    },
+    {
+        path: '/admin-panel',
+        name: 'adminPanel',
+        component: AdminPanel,
     },
 ];
 

@@ -16,6 +16,9 @@
         <li v-if="authStatus !== false">
           <a class="nav-link" href="http://localhost:8080/logout">Logout</a>
         </li>
+        <li v-if="authStatus !== false && roles.includes('ADMIN')">
+          <a class="nav-link" href="http://localhost:8080/admin-panel">Admin panel</a>
+        </li>
       </ul>
     </div>
   </nav>
@@ -28,7 +31,8 @@ import api from '@/services/api';
 export default {
   data() {
     return {
-      authStatus: null
+      authStatus: null,
+      roles: []
     };
   },
   methods: {
@@ -40,6 +44,7 @@ export default {
 
         if (response.status === 200) {
           this.authStatus = response.data.authenticated;
+          this.roles = response.data.roles;
         } else {
           console.error('Error fetching auth status');
         }
