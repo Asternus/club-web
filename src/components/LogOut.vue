@@ -1,5 +1,6 @@
 <script>
 import api from '@/services/api';
+import config from "@/config";
 
 export default {
   mounted() {
@@ -11,7 +12,7 @@ export default {
         await api.get('/logout', {
           withCredentials: true
         });
-        window.location.href = 'http://localhost:8080/';
+        window.location.href = `${config.appUrl}`;
         console.log('Logged out');
       } catch (error) {
         console.error('An error occurred during logout:', error);

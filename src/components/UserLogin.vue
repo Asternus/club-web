@@ -20,7 +20,8 @@
 </template>
 
 <script>
-import axios from 'axios';
+import api from '@/services/api';
+import config from '@/config';
 
 export default {
   data() {
@@ -36,7 +37,7 @@ export default {
         formData.append('username', this.username);
         formData.append('password', this.password);
 
-        const response = await axios.post('http://localhost:5000/login', formData, {
+        const response = await api.post('/login', formData, {
           withCredentials: true,
           headers: {
             'Content-Type': 'application/x-www-form-urlencoded',
@@ -51,7 +52,7 @@ export default {
           sessionStorage.setItem('authToken', authToken)
         }
 
-        window.location.href = 'http://localhost:8080/';
+        window.location.href = `${config.appUrl}`;
 
         // Действия после успешного входа
         console.log('Logged in:', response.data);

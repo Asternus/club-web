@@ -48,6 +48,7 @@
 
 <script>
 import api from '@/services/api';
+import config from "@/config";
 
 export default {
   data() {
@@ -62,7 +63,7 @@ export default {
   methods: {
     async registerUser() {
       try {
-        const response = await api.post('http://localhost:5000/add-user', {
+        const response = await api.post('/add-user', {
           username: this.username,
           email: this.email,
           password: this.password
@@ -76,14 +77,14 @@ export default {
         formData.append('username', this.email);
         formData.append('password', this.password);
 
-        await api.post('http://localhost:5000/login', formData, {
+        await api.post('/login', formData, {
           withCredentials: true,
           headers: {
             'Content-Type': 'application/x-www-form-urlencoded',
           },
         });
 
-        window.location.href = '/';
+        window.location.href = `${config.appUrl}`;
         console.log('Пользователь успешно зарегистрирован:', response.data);
       } catch (error) {
         console.error('Ошибка при регистрации пользователя:', error);
