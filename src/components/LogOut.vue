@@ -11,7 +11,7 @@ export default {
         await api.get('/logout', {
           withCredentials: true
         });
-        window.location.href = '/';
+        window.location.href = 'http://localhost:8080/';
         console.log('Logged out');
       } catch (error) {
         console.error('An error occurred during logout:', error);

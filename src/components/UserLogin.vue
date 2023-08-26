@@ -1,19 +1,21 @@
 <template>
   <div>
-    <h1>Login</h1>
-    <form @submit.prevent="login">
-      <div>
-        <label for="username">Username:</label>
-        <input type="text" id="username" v-model="username"/>
-      </div>
-      <div>
-        <label for="password">Password:</label>
-        <input type="password" id="password" v-model="password"/>
-      </div>
-      <div>
-        <button type="submit">Login</button>
-      </div>
-    </form>
+    <div class="center-container">
+      <form @submit.prevent="login" class="fixed-form">
+        <h1>Login</h1>
+        <div>
+          <label for="username">Username:</label>
+          <input type="text" id="username" v-model="username" required/>
+        </div>
+        <div>
+          <label for="password">Password:</label>
+          <input type="password" id="password" v-model="password" required/>
+        </div>
+        <button class="btn waves-effect waves-light" type="submit" name="action">Login
+          <i class="material-icons right">send</i>
+        </button>
+      </form>
+    </div>
   </div>
 </template>
 
@@ -49,7 +51,7 @@ export default {
           sessionStorage.setItem('authToken', authToken)
         }
 
-        window.location.href = '/';
+        window.location.href = 'http://localhost:8080/';
 
         // Действия после успешного входа
         console.log('Logged in:', response.data);
@@ -65,3 +67,24 @@ export default {
   },
 };
 </script>
+
+<style>
+.center-container {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  height: 100vh;
+}
+
+.fixed-form {
+  position: fixed;
+  top: 120px;
+  left: 50%;
+  transform: translateX(-50%);
+  width: 80%; /* Задайте желаемую ширину формы */
+  background-color: white;
+  padding: 20px;
+  box-shadow: 0px 2px 4px rgba(0, 0, 0, 0.1);
+}
+</style>

@@ -1,32 +1,25 @@
 <template>
-  <nav class="navbar navbar-expand-lg navbar-light bg-light fixed-top">
-    <a class="navbar-brand" href="http://localhost:8080/">Navbar</a>
-    <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarNav"
-            aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
-      <span class="navbar-toggler-icon"></span>
-    </button>
-    <div class="collapse navbar-collapse" id="navbarNav">
-      <ul class="navbar-nav">
-        <li v-if="authStatus === false" class="nav-item active">
-          <a class="nav-link" href="http://localhost:8080/registration">Registration <span
-              class="sr-only">(current)</span></a>
+  <div class="navbar-fixed">
+  <nav>
+    <div class="nav-wrapper">
+      <a href="/" class="brand-logo right">Club</a>
+      <ul id="nav-mobile" class="left hide-on-med-and-down">
+        <li v-if="authStatus === false">
+          <a class="nav-link" href="http://localhost:8080/registration">Registration</a>
         </li>
-        <li v-if="authStatus !== false" class="nav-item">
+        <li v-if="authStatus !== false">
           <a class="nav-link" href="http://localhost:8080/messages">Messages</a>
         </li>
-        <li v-if="authStatus === false" class="nav-item">
+        <li v-if="authStatus === false">
           <a class="nav-link" href="http://localhost:8080/login">login</a>
         </li>
-        <li v-if="authStatus !== false" class="nav-item active">
-          <a class="nav-link" href="http://localhost:8080/logout">Logout <span
-              class="sr-only">(current)</span></a>
-        </li>
-        <li class="nav-item">
-          <a class="nav-link disabled" href="#">Disabled</a>
+        <li v-if="authStatus !== false">
+          <a class="nav-link" href="http://localhost:8080/logout">Logout</a>
         </li>
       </ul>
     </div>
   </nav>
+  </div>
 </template>
 
 <script>
@@ -60,3 +53,21 @@ export default {
   }
 };
 </script>
+
+<style>
+nav {
+  position: fixed;
+  top: 0;
+  width: 100%;
+  z-index: 1000;
+}
+
+.nav-wrapper {
+  padding-left: 20px;
+  padding-right: 20px;
+}
+
+.brand-logo {
+  margin-right: 20px;
+}
+</style>
