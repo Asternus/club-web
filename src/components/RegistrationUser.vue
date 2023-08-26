@@ -47,7 +47,7 @@
 </template>
 
 <script>
-import axios from 'axios';
+import api from '@/services/api';
 
 export default {
   data() {
@@ -62,7 +62,7 @@ export default {
   methods: {
     async registerUser() {
       try {
-        const response = await axios.post('http://localhost:5000/add-user', {
+        const response = await api.post('http://localhost:5000/add-user', {
           username: this.username,
           email: this.email,
           password: this.password
@@ -71,6 +71,18 @@ export default {
             rePassword: this.rePassword
           }
         });
+
+        const formData = new FormData();
+        formData.append('username', this.email);
+        formData.append('password', this.password);
+
+        await api.post('http://localhost:5000/login', formData, {
+          withCredentials: true,
+          headers: {
+            'Content-Type': 'application/x-www-form-urlencoded',
+          },
+        });
+
         window.location.href = '/';
         console.log('Пользователь успешно зарегистрирован:', response.data);
       } catch (error) {
