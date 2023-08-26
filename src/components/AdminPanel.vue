@@ -8,6 +8,7 @@
         <th>User email</th>
         <th>User roles</th>
         <th>User status</th>
+        <th>Baned user</th>
       </tr>
       </thead>
       <tbody>
@@ -20,6 +21,7 @@
           </ul>
         </td>
         <td>{{ user.accountNonLocked ? 'Yes' : 'No' }}</td>
+        <td><button @click="banedUser(user.id)">Ban User</button></td>
       </tr>
       </tbody>
     </table>
@@ -43,6 +45,14 @@ export default {
       try {
         const response = await api.get("/admin/users");
         this.users = response.data;
+      } catch (error) {
+        console.error("Error fetching messages:", error);
+      }
+    },
+    async banedUser(userId) {
+      try {
+        const response = await api.get(`/admin/user/ban/${userId}`);
+        this.messages = response.data;
       } catch (error) {
         console.error("Error fetching messages:", error);
       }
