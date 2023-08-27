@@ -5,6 +5,7 @@ import RegistrationUser from '@/components/RegistrationUser.vue';
 import UserLogin from '@/components/UserLogin.vue';
 import LogOut from '@/components/LogOut.vue';
 import AdminPanel from '@/components/AdminPanel.vue';
+import UserProfile from '@/components/UserProfile.vue';
 
 const routes = [
     {
@@ -36,6 +37,11 @@ const routes = [
         path: '/admin-panel',
         name: 'adminPanel',
         component: AdminPanel,
+    },
+    {
+        path: '/profile',
+        name: 'profile',
+        component: UserProfile,
     },
 ];
 

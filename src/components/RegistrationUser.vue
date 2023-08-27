@@ -1,49 +1,36 @@
 <template>
-  <div class="row">
-    <div class="col s12 m8 offset-m2"> <!-- Добавляем классы для выравнивания по центру -->
-      <form class="col s12" @submit.prevent="registerUser">
-        <div class="row">
-          <div class="input-field col s6">
-            <label for="username">Username:</label>
-            <input type="text" id="username" v-model="username" required>
-            <div v-if="registrationError.username" class="error-message">
-              {{ registrationError.username }}
-            </div>
-          </div>
-        </div>
-        <div class="row">
-          <div class="input-field col s12">
-            <label for="password">Password:</label>
-            <input type="password" id="password" v-model="password" required>
-            <div v-if="registrationError.password" class="error-message">
-              {{ registrationError.password }}
-            </div>
-          </div>
-        </div>
-        <div class="row">
-          <div class="input-field col s12">
-            <label for="password">Confirm password:</label>
-            <input type="password" id="rePassword" v-model="rePassword" required>
-            <div v-if="registrationError.rePassword" class="error-message">
-              {{ registrationError.rePassword }}
-            </div>
-          </div>
-        </div>
-        <div class="row">
-          <div class="input-field col s12">
-            <label for="email">Email:</label>
-            <input type="email" id="email" v-model="email" required>
-            <div v-if="registrationError.email" class="error-message">
-              {{ registrationError.email }}
-            </div>
-          </div>
-        </div>
-        <button class="btn waves-effect waves-light" type="submit" name="action">Registration
-          <i class="material-icons right">send</i>
-        </button>
-      </form>
+  <h1> Registration </h1>
+  <form @submit.prevent="registerUser">
+    <div class="mb-3">
+      <label for="username">User name</label>
+      <input type="text" class="form-control" id="username" aria-describedby="emailHelp" placeholder="Enter username" v-model="username" required>
+      <div v-if="registrationError.username" class="error-message">
+        {{ registrationError.username }}
+      </div>
     </div>
-  </div>
+    <div class="mb-3">
+      <label for="email">Email address</label>
+      <input type="email" class="form-control" id="email" aria-describedby="emailHelp" placeholder="Enter email" v-model="email" required>
+      <div v-if="registrationError.email" class="error-message">
+        {{ registrationError.email }}
+      </div>
+    </div>
+    <div class="mb-3">
+      <label for="password">Password</label>
+      <input type="password" class="form-control" id="password" placeholder="Password" v-model="password" required>
+      <div v-if="registrationError.password" class="error-message">
+        {{ registrationError.password }}
+      </div>
+    </div>
+    <div class="mb-3">
+      <label for="rePassword">Confirm password</label>
+      <input type="password" class="form-control" id="rePassword" placeholder="Password" v-model="rePassword" required>
+      <div v-if="registrationError.password" class="error-message">
+        {{ registrationError.rePassword }}
+      </div>
+    </div>
+    <button type="submit" class="btn btn-primary">Submit</button>
+  </form>
 </template>
 
 <script>

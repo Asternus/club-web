@@ -1,28 +1,33 @@
 <template>
-  <div class="navbar-fixed">
-  <nav>
-    <div class="nav-wrapper">
-      <a href="/" class="brand-logo right">Club</a>
-      <ul id="nav-mobile" class="left hide-on-med-and-down">
-        <li v-if="authStatus === false">
+  <nav class="navbar navbar-expand-lg navbar-light bg-light fixed-top">
+    <a class="navbar-brand" href="/">Club</a>
+    <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+      <span class="navbar-toggler-icon"></span>
+    </button>
+
+    <div class="collapse navbar-collapse" id="navbarSupportedContent">
+      <ul class="navbar-nav mr-auto">
+        <li v-if="authStatus === false" class="nav-item dropdown">
           <a class="nav-link" href="http://localhost:8080/registration">Registration</a>
         </li>
-        <li v-if="authStatus !== false">
-          <a class="nav-link" href="http://localhost:8080/messages">Messages</a>
-        </li>
-        <li v-if="authStatus === false">
+        <li v-if="authStatus === false" class="nav-item dropdown">
           <a class="nav-link" href="http://localhost:8080/login">login</a>
         </li>
-        <li v-if="authStatus !== false">
-          <a class="nav-link" href="http://localhost:8080/logout">Logout</a>
+        <li v-if="authStatus !== false" class="nav-item dropdown">
+          <a class="nav-link" href="http://localhost:8080/profile">Profile</a>
         </li>
-        <li v-if="authStatus !== false && roles.includes('ADMIN')">
+        <li v-if="authStatus !== false" class="nav-item dropdown">
+          <a class="nav-link" href="http://localhost:8080/messages">Messages</a>
+        </li>
+        <li v-if="authStatus !== false && roles.includes('ADMIN')" class="nav-item dropdown">
           <a class="nav-link" href="http://localhost:8080/admin-panel">Admin panel</a>
+        </li>
+        <li v-if="authStatus !== false" class="nav-item dropdown">
+          <a class="nav-link" href="http://localhost:8080/logout">Logout</a>
         </li>
       </ul>
     </div>
   </nav>
-  </div>
 </template>
 
 <script>
@@ -58,21 +63,3 @@ export default {
   }
 };
 </script>
-
-<style>
-nav {
-  position: fixed;
-  top: 0;
-  width: 100%;
-  z-index: 1000;
-}
-
-.nav-wrapper {
-  padding-left: 20px;
-  padding-right: 20px;
-}
-
-.brand-logo {
-  margin-right: 20px;
-}
-</style>
