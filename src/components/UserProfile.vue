@@ -5,6 +5,7 @@
       <div class="card-body">
         <h5 class="card-title">{{ user.id }}</h5>
         <p class="card-text">{{ user.email }}</p>
+        <p class="card-text">{{ wallet.aster }}</p>
       </div>
     </div>
   </div>
@@ -18,6 +19,7 @@ export default {
   data() {
     return {
       user: {},
+      wallet: {},
     };
   },
   mounted() {
@@ -28,6 +30,7 @@ export default {
       try {
         const response = await api.get("/profile");
         this.user = response.data;
+        this.wallet = response.data.wallet;
       } catch (error) {
         console.error("Error fetching messages:", error);
       }

@@ -6,6 +6,7 @@ import UserLogin from '@/components/UserLogin.vue';
 import LogOut from '@/components/LogOut.vue';
 import AdminPanel from '@/components/AdminPanel.vue';
 import UserProfile from '@/components/UserProfile.vue';
+import DoWork from '@/components/DoWork.vue';
 
 const routes = [
     {
@@ -42,6 +43,11 @@ const routes = [
         path: '/profile',
         name: 'profile',
         component: UserProfile,
+    },
+    {
+        path: '/do-work',
+        name: 'do-work',
+        component: DoWork,
     },
 ];
 

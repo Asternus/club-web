@@ -25,6 +25,9 @@
         <li v-if="authStatus !== false" class="nav-item dropdown">
           <a class="nav-link" href="http://localhost:8080/logout">Logout</a>
         </li>
+        <li v-if="authStatus !== false" class="nav-item dropdown">
+          <a class="nav-link" href="http://localhost:8080/do-work">Work</a>
+        </li>
       </ul>
     </div>
   </nav>
