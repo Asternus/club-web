@@ -10,12 +10,7 @@
   </div>
 
   <div v-if="!isAvailable">
-    <div v-if="time > 0">
-      <p>Time remaining: {{ time }} seconds</p>
-    </div>
-    <div v-else>
-      <p>Time is up! Reloading...</p>
-    </div>
+    <h1>Now you in work</h1>
   </div>
 
 </template>
@@ -39,8 +34,12 @@ export default {
       try {
         const response = await api.get("/get-work");
         this.isAvailable = response.data.isAvailable;
-        if (!this.isAvailable) {
-          this.startCountdown();
+        const reloadTime = localStorage.getItem('reloadTime');
+        if (reloadTime > 0) {
+          setTimeout(() => {
+            window.location.href = `${config.appUrl}do-work`;
+          }, reloadTime);
+          localStorage.setItem('reloadTime', 0);
         }
       } catch (error) {
         console.error("Error fetching messages:", error);
@@ -48,29 +47,14 @@ export default {
     },
     async doWork() {
       try {
-        const response = await api.post("/do-work", {time: this.selectedTime});
-        this.time = response.data.myTime;
+        await api.post("/do-work", {time: this.selectedTime});
+        localStorage.setItem('reloadTime', this.selectedTime * 1000);
         window.location.href = `${config.appUrl}do-work`;
       } catch (error) {
         console.error("Error fetching messages:", error);
       }
     },
-    startCountdown() {
-      this.countdownInterval = setInterval(() => {
-        if (this.time > 0) {
-          this.time--;
-        } else {
-          clearInterval(this.countdownInterval);
-          setTimeout(() => {
-            window.location.reload();
-          }, 2000); // Подождать 2 секунды перед автоматической перезагрузкой
-        }
-      }, 1000);
-    },
-  },
-  beforeUnmount() {
-    clearInterval(this.countdownInterval);
-  },
-};
+  }
+}
 </script>
 
