@@ -23,10 +23,10 @@
           <a class="nav-link" href="http://localhost:8080/admin-panel">Admin panel</a>
         </li>
         <li v-if="authStatus !== false" class="nav-item dropdown">
-          <a class="nav-link" href="http://localhost:8080/logout">Logout</a>
+          <a class="nav-link" href="http://localhost:8080/do-work">Work</a>
         </li>
         <li v-if="authStatus !== false" class="nav-item dropdown">
-          <a class="nav-link" href="http://localhost:8080/do-work">Work</a>
+          <a class="nav-link" href="http://localhost:8080/logout">Logout</a>
         </li>
       </ul>
     </div>
