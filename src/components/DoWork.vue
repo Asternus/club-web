@@ -3,6 +3,7 @@
   <div class="d-flex justify-content-start">
     <div class="card custom-card">
       <div class="card-body" v-for="workProfile in workProfiles" :key="workProfile.id">
+        <h5 class="card-title">My company is {{ workProfile.companyProfile.companyName }}</h5>
         <h5 class="card-title">My position is {{ workProfile.position }}</h5>
         <p class="card-text">My Job name is {{ workProfile.jobName }}</p>
         <p class="card-text">My salary is {{ workProfile.salary }}</p>
@@ -45,6 +46,7 @@ export default {
       workProfiles: [],
       selectedJob: null,
       salary: 0,
+      companyProfile: null,
     };
   },
   mounted() {
@@ -56,6 +58,7 @@ export default {
         const response = await api.get("/get-work");
         this.isAvailable = response.data.isAvailable;
         this.workProfiles = response.data.workProfiles;
+        this.companyProfile = response.data.workProfiles.companyProfile;
         const reloadTime = localStorage.getItem('reloadTime');
         if (reloadTime > 0) {
           setTimeout(() => {
