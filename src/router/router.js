@@ -7,6 +7,7 @@ import LogOut from '@/components/LogOut.vue';
 import AdminPanel from '@/components/AdminPanel.vue';
 import UserProfile from '@/components/UserProfile.vue';
 import DoWork from '@/components/DoWork.vue';
+import VacancyPanel from '@/components/VacancyPanel.vue';
 
 const routes = [
     {
@@ -48,6 +49,11 @@ const routes = [
         path: '/do-work',
         name: 'do-work',
         component: DoWork,
+    },
+    {
+        path: '/get-vacancy',
+        name: 'do-vacancy',
+        component: VacancyPanel,
     },
 ];
 
