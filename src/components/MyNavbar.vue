@@ -1,7 +1,9 @@
 <template>
+
   <nav class="navbar navbar-expand-lg navbar-light bg-light fixed-top">
     <a class="navbar-brand" href="/">Club</a>
-    <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+    <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent"
+            aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
       <span class="navbar-toggler-icon"></span>
     </button>
 
@@ -23,10 +25,16 @@
           <a class="nav-link" href="http://localhost:8080/admin-panel">Admin panel</a>
         </li>
         <li v-if="authStatus !== false" class="nav-item dropdown">
-          <a class="nav-link" href="http://localhost:8080/do-work">Work</a>
-        </li>
-        <li v-if="authStatus !== false" class="nav-item dropdown">
-          <a class="nav-link" href="http://localhost:8080/get-vacancy">Free vacancy</a>
+          <a class="nav-link dropdown-toggle" href="http://localhost:8080/do-work" role="button"
+             data-bs-toggle="dropdown" aria-expanded="false">
+            Activity
+          </a>
+          <ul class="dropdown-menu">
+            <li v-if="authStatus !== false"><a class="dropdown-item" href="http://localhost:8080/do-work">Work</a></li>
+            <li v-if="authStatus !== false"><a class="dropdown-item" href="http://localhost:8080/get-vacancy">Free
+              vacancy</a></li>
+            <li v-if="authStatus !== false"><a class="dropdown-item" href="http://localhost:8080/add-company">Create company</a></li>
+          </ul>
         </li>
         <li v-if="authStatus !== false" class="nav-item dropdown">
           <a class="nav-link" href="http://localhost:8080/logout">Logout</a>
